@@ -15,14 +15,14 @@ import java.util.Objects;
 @ToString
 
 @Entity
-public class History {
+public class history {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int seq; // 이력 고유번호
 
     @ManyToOne(optional = false) private user user_id; // 유저 고유번호
-    @ManyToOne(optional = false) private Goal goal_id; // 목표 고유번호
+    @ManyToOne(optional = false) private goal goal_id; // 목표 고유번호
 
     @Setter  @Column(nullable = false) private int execute_seconds; // 수행 시간(초)
 
@@ -32,13 +32,13 @@ public class History {
     protected history() {
     }
 
-    private history(user user_id, Goal goal_id, int execute_seconds) {
+    private history(user user_id, goal goal_id, int execute_seconds) {
         this.user_id = user_id;
         this.goal_id = goal_id;
         this.execute_seconds = execute_seconds;
     }
 
-    public static history of(user user_id, Goal goal_id, int execute_seconds) {
+    public static history of(user user_id, goal goal_id, int execute_seconds) {
         return new history(user_id, goal_id, execute_seconds);
     }
 
@@ -46,7 +46,7 @@ public class History {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof history)) return false;
-        history history = (history) o;
+        history history = (com.climb.timecounting.domain.history) o;
         return seq == history.seq;
     }
 
