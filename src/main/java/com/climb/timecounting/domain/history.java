@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.util.Objects;
 
 @Getter
 @ToString
-
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class history {
 
@@ -21,8 +22,8 @@ public class history {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int seq; // 이력 고유번호
 
-    @ManyToOne(optional = false) private user user_id; // 유저 고유번호
-    @ManyToOne(optional = false) private goal goal_id; // 목표 고유번호
+    private @Column(length = 100) String user_id; // 유저 고유번호
+    private @Column(nullable = false, length = 11) String goal_id; // 목표 고유번호
 
     @Setter  @Column(nullable = false) private int execute_seconds; // 수행 시간(초)
 
@@ -32,13 +33,13 @@ public class history {
     protected history() {
     }
 
-    private history(user user_id, goal goal_id, int execute_seconds) {
+    private history(String user_id, String goal_id, int execute_seconds) {
         this.user_id = user_id;
         this.goal_id = goal_id;
         this.execute_seconds = execute_seconds;
     }
 
-    public static history of(user user_id, goal goal_id, int execute_seconds) {
+    public static history of(String user_id, String goal_id, int execute_seconds) {
         return new history(user_id, goal_id, execute_seconds);
     }
 

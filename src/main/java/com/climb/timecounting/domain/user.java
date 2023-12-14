@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,25 +15,17 @@ import java.util.Set;
 
 @Getter
 @ToString
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class user {
 
     @Id
     private @Column(length = 100) String user_id; // 유저 고유번호
 
-    @Setter @Column(nullable = false, length = 8) private String user_name; // 유저 닉네임
+    @Setter @Column(nullable = false, length = 20) private String user_name; // 유저 닉네임
     @Setter private Boolean user_stat; // 계정 사용 여부 TRUE:정상, FALSE:탈퇴
 
     private Character login_stat; // 로그인 상태 A:애플로그인, G:구글로그인, NULL:로그아웃
-
-    @ToString.Exclude
-    @OneToMany(mappedBy = "user_id")
-    private final Set<com.climb.timecounting.domain.history> history = new LinkedHashSet<>();
-
-    @ToString.Exclude
-    @OneToMany(mappedBy = "user_id")
-    private final Set<com.climb.timecounting.domain.goal> goal = new LinkedHashSet<>();
-
 
     @CreatedDate @Column(nullable = false) private LocalDateTime write_date; // 최초 입력일자
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modify_date; // 수정일자
