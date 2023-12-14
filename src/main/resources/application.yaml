@@ -32,9 +32,9 @@ spring:
 
 spring:
   config.activate.on-profile: testdb
- # datasource:
-#    url: jdbc:h2:mem:time-count=mysql
-#    driverClassname: org.h2.Drive
-#  sql.init.mode: always
-#  test.database.replace: none
+  datasource:
+    url: jdbc:h2:mem:time-count;mode=mysql
+    driverClassname: org.h2.Drive
+  sql.init.mode: always
+  test.database.replace: none
 
