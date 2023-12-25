@@ -1,6 +1,6 @@
 package com.climb.timecounting.controller;
-import com.climb.timecounting.domain.goal;
-import com.climb.timecounting.service.GoalService;
+import com.climb.timecounting.domain.history;
+import com.climb.timecounting.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/goal")
+@RequestMapping("/history")
 @RestController
-public class GoalController {
+public class HistoryController {
 
-    private GoalService goalService;
+    private HistoryService historyService;
     @Autowired
-    public GoalController(GoalService goalService) {
-        this.goalService = goalService;
+    public HistoryController(HistoryService historyService) {
+        this.historyService = historyService;
     }
 
     // 임시
     @GetMapping({"/list"})
-    public ResponseEntity<List<goal>> getGoalList() {
+    public ResponseEntity<List<history>> getHistoryList() {
         System.out.println("리스트조회");
-        var goalList = goalService.getGoalList();
-        return ResponseEntity.ok(goalList);
+        var historyList = historyService.getHistoryList();
+        return ResponseEntity.ok(historyList);
     }
 }
