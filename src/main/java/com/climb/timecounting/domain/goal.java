@@ -34,7 +34,7 @@ public class goal {
     @Setter
     private Character goal_stat ; // 목표 상태 I:진행중(ing), F:완료(fin), S:중지(stop), R:준비(ready)
 
-    @Setter @Column(length = 10) private String color; // 목표 색상
+    @Setter @Column(length = 6) private String color; // 목표 색상. 헥스 코드 a 빼고 6자리 저장함.
 
     @CreatedDate @Column(nullable = false) private LocalDateTime write_date; // 최초 입력일자
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modify_date; // 수정일자
