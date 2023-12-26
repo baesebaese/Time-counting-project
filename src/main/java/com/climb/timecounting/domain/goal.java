@@ -31,6 +31,10 @@ public class goal {
     @Setter @Column(nullable = false) private int goal_seconds; // 목표 설정 시간(초)
     private int accumulate_seconds; // 목표 누적 시간(초)
     private double goal_percent; // 목표 진척도
+    @Setter
+    private Character goal_stat ; // 목표 상태 I:진행중(ing), F:완료(fin), S:중지(stop), R:준비(ready)
+
+    @Setter @Column(length = 10) private String color; // 목표 색상
 
     @CreatedDate @Column(nullable = false) private LocalDateTime write_date; // 최초 입력일자
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modify_date; // 수정일자
@@ -38,7 +42,7 @@ public class goal {
     protected goal() {
     }
 
-    private goal(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent) {
+    private goal(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {
         this.user_id = user_id;
         this.goal_id = goal_id;
         this.goal_name = goal_name;
@@ -46,10 +50,12 @@ public class goal {
         this.goal_seconds = goal_seconds;
         this.accumulate_seconds = accumulate_seconds;
         this.goal_percent = goal_percent;
+        this.goal_stat = goal_stat;
+        this.color = color;
     }
 
-    public static goal of(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent) {
-        return new goal(user_id, goal_id, goal_name, goal_detail, goal_seconds, accumulate_seconds, goal_percent);
+    public static goal of(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {
+        return new goal(user_id, goal_id, goal_name, goal_detail, goal_seconds, accumulate_seconds, goal_percent, goal_stat, color);
     }
 
     @Override

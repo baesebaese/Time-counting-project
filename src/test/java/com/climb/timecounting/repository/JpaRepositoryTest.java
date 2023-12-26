@@ -54,7 +54,7 @@ class JpaRepositoryTest {
         long previousCount = goalRepository.count();
 
        //When
-        goal savedGoal = goalRepository.saveAndFlush(goal.of("morendo90@gmail.com", "A00001","보라 클라이머 되기", "클라이밍으로 인스타 셀럽이 될거다", 8000, 120, 10.1));
+        goal savedGoal = goalRepository.saveAndFlush(goal.of("morendo90@gmail.com", "A00001","보라 클라이머 되기", "클라이밍으로 인스타 셀럽이 될거다", 8000, 120, 10.1, 'R', "0xFFED4141"));
 
         //Then
         assertThat(goalRepository.count()).isEqualTo(previousCount + 1);
