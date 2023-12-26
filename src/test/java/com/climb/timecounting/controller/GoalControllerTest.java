@@ -22,7 +22,7 @@ class GoalControllerTest {
         this.mvc = mvc;
     }
 
-    @Disabled("구현 중")
+
     @DisplayName("[view][GET] 목표 리스트 페이지 - 정상 호출")
     @Test
     public void givenNothing_whenRequestingView_thenReturnsGoals() throws Exception {
@@ -31,12 +31,13 @@ class GoalControllerTest {
         //When & Then
         mvc.perform(get("/goals"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
-                .andExpect(model().attributeExists("articles"));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("goals/index"))
+                .andExpect(model().attributeExists("goals"));
 
     }
 
-    @Disabled("구현 중")
+
     @DisplayName("[view][GET] 목표 상세 페이지 - 정상 호출")
     @Test
     public void givenNothing_whenRequestingGoalView_thenReturnsGoalView() throws Exception {
@@ -45,8 +46,9 @@ class GoalControllerTest {
         //When & Then
         mvc.perform(get("/goals/1"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
-                .andExpect(model().attributeExists("article"));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("goals/detail"))
+                .andExpect(model().attributeExists("goals"));
 
     }
 
@@ -60,7 +62,7 @@ class GoalControllerTest {
         //When & Then
         mvc.perform(get("/goals/search"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
 
     }
 
