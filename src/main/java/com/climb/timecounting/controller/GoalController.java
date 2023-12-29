@@ -46,5 +46,5 @@ public class GoalController {
      //   var goalList = goalService.getGoalList();
      //   return ResponseEntity.ok(goalList);
 
-    // }
+    }
 }
