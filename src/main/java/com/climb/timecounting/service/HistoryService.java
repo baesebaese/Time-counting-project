@@ -1,5 +1,5 @@
 package com.climb.timecounting.service;
-import com.climb.timecounting.domain.history;
+import com.climb.timecounting.domain.History;
 import com.climb.timecounting.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,15 @@ public class HistoryService {
 
     // 임시
     @Transactional(readOnly = true)
-    public List<history> getHistoryList() {
-        List<history> result = historyRepository.findAll();
+    public List<History> getHistoryList() {
+        List<History> result = historyRepository.findAll();
         System.out.println("리스트 출력 " + result.toString());
+        return result;
+    }
+
+    public List<History> historiesByGoal(String userId){
+        List<History> result = historyRepository.findAllByUser_id(userId);
+
         return result;
     }
 }

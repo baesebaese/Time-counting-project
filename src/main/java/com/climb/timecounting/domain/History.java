@@ -16,7 +16,7 @@ import java.util.Objects;
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class history {
+public class History {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -30,24 +30,24 @@ public class history {
     @CreatedDate @Column(nullable = false) private LocalDateTime write_date; // 최초 입력일자
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modify_date; // 수정일자
 
-    protected history() {
+    protected History() {
     }
 
-    private history(String user_id, String goal_id, int execute_seconds) {
+    private History(String user_id, String goal_id, int execute_seconds) {
         this.user_id = user_id;
         this.goal_id = goal_id;
         this.execute_seconds = execute_seconds;
     }
 
-    public static history of(String user_id, String goal_id, int execute_seconds) {
-        return new history(user_id, goal_id, execute_seconds);
+    public static History of(String user_id, String goal_id, int execute_seconds) {
+        return new History(user_id, goal_id, execute_seconds);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof history)) return false;
-        history history = (com.climb.timecounting.domain.history) o;
+        if (!(o instanceof History)) return false;
+        History history = (History) o;
         return seq == history.seq;
     }
 

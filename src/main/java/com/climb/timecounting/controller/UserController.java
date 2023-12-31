@@ -1,14 +1,14 @@
 package com.climb.timecounting.controller;
 
 import com.climb.timecounting.service.UserService;
-import jdk.jfr.ContentType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -18,12 +18,20 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/check")
-    public void check(@RequestBody Map token){
-        userService.check(token);
+    public ResponseEntity<Map> check(@RequestBody Map token){
+        var user = userService.check(token);
+
+        Map result = new HashMap();
+        result.put("User", user);
+
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/register")
-    public void register(){
+    public ResponseEntity<?> register(@RequestBody Map body){
 
+        userService.register(null);
+
+        return ResponseEntity.ok(null);
     }
 }

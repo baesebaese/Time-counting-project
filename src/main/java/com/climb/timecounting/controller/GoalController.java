@@ -29,6 +29,8 @@ public class GoalController {
 
         return "goals/detail";
 
+    }
+
 // @RequestMapping("/goal")
 // @RestController
 // public class GoalController {
@@ -45,6 +47,5 @@ public class GoalController {
      //   System.out.println("리스트조회");
      //   var goalList = goalService.getGoalList();
      //   return ResponseEntity.ok(goalList);
-
-    }
+    //}
 }
