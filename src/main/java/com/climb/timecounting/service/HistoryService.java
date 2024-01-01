@@ -25,8 +25,8 @@ public class HistoryService {
     }
 
     public List<History> historiesByGoal(String userId){
-        List<History> result = historyRepository.findAllByUser_id(userId);
-
+        //List<History> result = historyRepository.findAllByUser_id(userId);
+        List<History> result = null;
         return result;
     }
 }

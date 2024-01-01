@@ -11,9 +11,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final KakaoApiService kakaoApiService;
 
     public User check(Map token){
-        var user = userRepository.findById("213").orElse(null);
+        var id = kakaoApiService.info(token);
+        var user = userRepository.findById(id).orElse(null);
 
         return user;
     }

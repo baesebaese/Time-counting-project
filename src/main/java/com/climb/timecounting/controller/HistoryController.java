@@ -26,8 +26,8 @@ public class HistoryController {
         return ResponseEntity.ok(historyList);
     }
 
-    @PostMapping("/history")
-    public ResponseEntity<List<History>> histirysByGoal(@RequestBody Map request){
+    @PostMapping("/one")
+    public ResponseEntity<List<History>> historiesByGoal(@RequestBody Map request){
         var historyList = historyService.historiesByGoal((String) request.get("UserId"));
         return ResponseEntity.ok(historyList);
     }

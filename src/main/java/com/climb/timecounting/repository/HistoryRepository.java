@@ -28,7 +28,7 @@ public interface HistoryRepository extends
         bindings.bind(root.write_date).first(DateTimeExpression::eq);
     }
 
-    List<History> findAllByUser_id(String user_id);
+    //List<History> findAllByUser_id(String user_id);
 
 
 }
