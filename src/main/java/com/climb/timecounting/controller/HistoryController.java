@@ -1,0 +1,34 @@
+package com.climb.timecounting.controller;
+import com.climb.timecounting.domain.History;
+import com.climb.timecounting.service.HistoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+@RequestMapping("/history")
+@RestController
+public class HistoryController {
+
+    private HistoryService historyService;
+    @Autowired
+    public HistoryController(HistoryService historyService) {
+        this.historyService = historyService;
+    }
+
+    // 임시
+    @GetMapping({"/list"})
+    public ResponseEntity<List<History>> getHistoryList() {
+        System.out.println("리스트조회");
+        var historyList = historyService.getHistoryList();
+        return ResponseEntity.ok(historyList);
+    }
+
+    @PostMapping("/history")
+    public ResponseEntity<List<History>> histirysByGoal(@RequestBody Map request){
+        var historyList = historyService.historiesByGoal((String) request.get("UserId"));
+        return ResponseEntity.ok(historyList);
+    }
+}
