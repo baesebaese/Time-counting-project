@@ -1,17 +1,21 @@
 package com.climb.timecounting.service;
 
 
-import com.climb.timecounting.domain.Goal;
+import com.climb.timecounting.domain.goal;
 import com.climb.timecounting.dto.GoalDto;
+import com.climb.timecounting.dto.GoalUpdateDto;
 import com.climb.timecounting.repository.GoalRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -40,7 +44,7 @@ public class GoalService {
 
     public void updateGoal(GoalDto dto) {
         try {
-            Goal goal = goalRepository.getReferenceById(dto.goal_id());
+            goal goal = goalRepository.getReferenceById(dto.goal_id());
             if(dto.goal_name() != null) { goal.setGoal_name(dto.goal_name()); }
             if(dto.goal_seconds() != 0) {goal.setGoal_seconds(dto.toEntity().getGoal_seconds());};
             goal.setGoal_stat(dto.goal_stat());

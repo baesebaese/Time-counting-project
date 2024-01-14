@@ -1,7 +1,10 @@
 package com.climb.timecounting.dto;
 
-import com.climb.timecounting.domain.Goal;
+import com.climb.timecounting.domain.goal;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 public record GoalDto(
@@ -23,7 +26,7 @@ public record GoalDto(
         return new GoalDto(goal_id, accumulate_seconds, goal_name, goal_detail,  goal_percent, goal_seconds, modify_date, user_id, write_date, goal_stat, color);
     }
 
-    public static GoalDto from(Goal entity) {
+    public static GoalDto from(goal entity) {
         return new GoalDto(
                 entity.getGoal_id(),
                 entity.getAccumulate_seconds(),
@@ -39,8 +42,8 @@ public record GoalDto(
         );
     }
 
-    public Goal toEntity() {
-        return Goal.of(
+    public goal toEntity() {
+        return goal.of(
                 user_id,
                 goal_id,
                 goal_name,

@@ -1,7 +1,7 @@
 package com.climb.timecounting.repository;
 
-import com.climb.timecounting.domain.QHistory;
-import com.climb.timecounting.domain.History;
+import com.climb.timecounting.domain.Qhistory;
+import com.climb.timecounting.domain.history;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,12 +12,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface HistoryRepository extends
-        JpaRepository<History, Integer>
-        , QuerydslPredicateExecutor<History>
-        , QuerydslBinderCustomizer<QHistory>
+        JpaRepository<history, Integer>
+        , QuerydslPredicateExecutor<history>
+        , QuerydslBinderCustomizer<Qhistory>
 {
     @Override
-    default void customize(QuerydslBindings bindings, QHistory root) {
+    default void customize(QuerydslBindings bindings, Qhistory root) {
         bindings.excludeUnlistedProperties(true);
         bindings.including(root.goal_id, root.user_id, root.modify_date, root.write_date);
         bindings.bind(root.goal_id).first(StringExpression::eq);

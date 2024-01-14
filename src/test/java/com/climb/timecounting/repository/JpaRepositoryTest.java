@@ -1,7 +1,7 @@
 package com.climb.timecounting.repository;
 
 import com.climb.timecounting.config.JpaConfig;
-import com.climb.timecounting.domain.Goal;
+import com.climb.timecounting.domain.goal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ class JpaRepositoryTest {
         //Given
 
         //When
-        List<Goal> goals = goalRepository.findAll();
+        List<goal> goals = goalRepository.findAll();
 
         //Then
         assertThat(goals)
@@ -54,7 +54,7 @@ class JpaRepositoryTest {
         long previousCount = goalRepository.count();
 
        //When
-        Goal savedGoal = goalRepository.saveAndFlush(Goal.of("morendo90@gmail.com", "A00001","보라 클라이머 되기", "클라이밍으로 인스타 셀럽이 될거다", 8000, 120, 10.1, 'R', "0xFFED4141"));
+        goal savedGoal = goalRepository.saveAndFlush(goal.of("morendo90@gmail.com", "A00001","보라 클라이머 되기", "클라이밍으로 인스타 셀럽이 될거다", 8000, 120, 10.1, 'R', "0xFFED4141"));
 
         //Then
         assertThat(goalRepository.count()).isEqualTo(previousCount + 1);
@@ -64,12 +64,12 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenUpdating_thenWorksFine() {
         //Given
-        Goal goalData =  goalRepository.findById("1").orElseThrow();
+        goal goalData =  goalRepository.findById("1").orElseThrow();
         String updatedGoalName = "천재개발자 되기";
 
         goalData.setGoal_name(updatedGoalName);
         //When
-        Goal savedGoal = goalRepository.saveAndFlush(goalData);
+        goal savedGoal = goalRepository.saveAndFlush(goalData);
 
         //Then
         assertThat(savedGoal).hasFieldOrPropertyWithValue("goal_name", updatedGoalName);
@@ -79,7 +79,7 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenDeleting_thenWorksFine() {
         //Given
-        Goal goalData =  goalRepository.findById("1").orElseThrow();
+        goal goalData =  goalRepository.findById("1").orElseThrow();
         long previousCount = goalRepository.count();
 
         //When
