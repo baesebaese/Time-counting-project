@@ -21,6 +21,8 @@ public class UserService {
     }
 
     public boolean register(User user){
+        // 닉네임 고유한지 select 해서 체크
+        
         var result = userRepository.save(user);
 
         if(result == null){
