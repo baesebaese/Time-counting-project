@@ -1,5 +1,10 @@
 package com.climb.timecounting.controller;
 
+import com.climb.timecounting.dto.GoalDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,37 +19,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RequestMapping("/goals")
 @Controller
 public class GoalController {
+
+    private final GoalService goalService;
+
     @GetMapping
-    public String goals(ModelMap map) {
-        map.addAttribute("goals", List.of());
+    public String goals(
+            @PageableDefault(size = 20, direction = Sort.Direction.DESC) Pageable pageable,
+            ModelMap map
+    ) {
+        map.addAttribute("goals", goalService.getListGoals(pageable));
         return "goals/index";
     }
 
     @GetMapping("/{goalId}")
-    public String goal(@PathVariable Long goalId, ModelMap map) {
-        map.addAttribute("goal", "goal");
+    public String goal(@PathVariable String goalId, ModelMap map) {
+        map.addAttribute("goal", goalService.getGoal(goalId));
 
         return "goals/detail";
-
-// @RequestMapping("/goal")
-// @RestController
-// public class GoalController {
-
-   // private GoalService goalService;
-   // @Autowired
-   // public GoalController(GoalService goalService) {
-   //     this.goalService = goalService;
-   // }
-
-    // 임시
-    // @GetMapping({"/list"})
-    // public ResponseEntity<List<goal>> getGoalList() {
-     //   System.out.println("리스트조회");
-     //   var goalList = goalService.getGoalList();
-     //   return ResponseEntity.ok(goalList);
-
-    // }
+    }
+/*
+    @GetMapping("/new")
+    public String postNewGoal(GoalDto goalRequest) {
+        goalService.saveGoal(goalRequest);
+    }
+    */
 }

@@ -15,29 +15,21 @@
         <form>
 
         </form>
-        <table>
+        <table class="table" id="goal-table">
             <thead>
                 <tr>
-                    <th>목표명</th>
-                    <th>목표 상세내용</th>
-                    <th>목표 시간</th>
+                    <th class="goal-name col-6">목표명</th>
+                    <th class="goal-id col">목표ID</th>
+                    <th class="goal-detail col-10">목표 상세내용</th>
+                    <th class="goal-seconds col">목표 시간</th>
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>보라 클라이머 되기</td>
-                <td>클라이밍 맨날 맨날 해서 초고수가 되자</td>
-                <td>10000</td>
-            </tr>
-            <tr>
-                <td>파워 블로거 되기</td>
-                <td>블로그로 부수입을 내자</td>
-                <td>10000</td>
-            </tr>
-            <tr>
-                <td>이직하기</td>
-                <td>이카운트 나쁜놈들아!</td>
-                <td>10000</td>
+            <tr th:each="goal : ${goals}">
+                <td class="goal-name" ><a th:href="@{'/goals/' + ${goal.goal_id}}" th:text="${goal.goal_name}"></a>></td>
+                <td class="goal-id" th:text="${goal.goal_id}"></td>
+                <td class="goal-detail" th:text="${goal.goal_detail}"></td>
+                <td class="goal-seconds" th:text="${goal.goal_seconds}"></td>
             </tr>
             </tbody>
         </table>

@@ -11,7 +11,7 @@
         <hr>
     </header>
 
-    <main>
+    <main id="goal-main" >
         <header>
             <h1>새로운 목표</h1>
         </header>
@@ -19,11 +19,11 @@
         <aside>
             <form>
                 <p>제목</p>
-                <textarea name="title" id="title" cols="30" rows="1"></textarea>
+                <textarea name="title" id="title" cols="30" rows="1" th:text="${goal.goal_name}"></textarea>
                 <p>내용</p>
-                <textarea name="contents" id="contents" cols="30" rows="3"></textarea>
+                <textarea name="contents" id="contents" cols="30" rows="3" th:text="${goal.goal_detail}"></textarea>
                 <p>목표시간</p>
-                <textarea name="time" id="time" cols="30" rows="1"></textarea>
+                <textarea name="time" id="time" cols="30" rows="1" th:text="${goal.goal_seconds}"></textarea>
                 <button type="submit">저장</button>
             </form>
 

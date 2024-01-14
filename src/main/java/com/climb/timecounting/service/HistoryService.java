@@ -1,16 +1,20 @@
 package com.climb.timecounting.service;
 import com.climb.timecounting.domain.history;
 import com.climb.timecounting.repository.HistoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+
+@RequiredArgsConstructor
 @Service
 @Transactional
 public class HistoryService {
 
-    private HistoryRepository historyRepository;
+    private final HistoryRepository historyRepository;
 
+    /*
     @Autowired
     public HistoryService(HistoryRepository historyRepository) {
         this.historyRepository = historyRepository;
@@ -22,5 +26,5 @@ public class HistoryService {
         List<history> result = historyRepository.findAll();
         System.out.println("리스트 출력 " + result.toString());
         return result;
-    }
+    }*/
 }
