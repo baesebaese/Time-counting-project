@@ -43,15 +43,7 @@ public class goal {
     }
 
     private goal(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {
-        this.user_id = user_id;
-        this.goal_id = goal_id;
-        this.goal_name = goal_name;
-        this.goal_detail = goal_detail;
-        this.goal_seconds = goal_seconds;
-        this.accumulate_seconds = accumulate_seconds;
-        this.goal_percent = goal_percent;
-        this.goal_stat = goal_stat;
-        this.color = color;
+
     }
 
     public static goal of(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {

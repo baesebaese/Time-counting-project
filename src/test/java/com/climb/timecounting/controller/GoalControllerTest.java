@@ -1,12 +1,18 @@
 package com.climb.timecounting.controller;
 
+
+import com.climb.timecounting.service.GoalService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -17,11 +23,11 @@ class GoalControllerTest {
 
     private final MockMvc mvc;
 
+    @MockBean private GoalService goalService;
     public GoalControllerTest(@Autowired MockMvc mvc)
     {
         this.mvc = mvc;
     }
-
 
     @DisplayName("[view][GET] 목표 리스트 페이지 - 정상 호출")
     @Test
@@ -42,7 +48,7 @@ class GoalControllerTest {
     @Test
     public void givenNothing_whenRequestingGoalView_thenReturnsGoalView() throws Exception {
         //Given
-
+        String goalId = "1";
         //When & Then
         mvc.perform(get("/goals/1"))
                 .andExpect(status().isOk())
