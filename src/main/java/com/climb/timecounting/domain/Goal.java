@@ -1,6 +1,5 @@
 package com.climb.timecounting.domain;
 
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,15 +9,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Getter
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class goal {
+public class Goal {
 
     private @Column(length = 100) String user_id; // 유저 고유번호
 
@@ -39,22 +36,22 @@ public class goal {
     @CreatedDate @Column(nullable = false) private LocalDateTime write_date; // 최초 입력일자
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modify_date; // 수정일자
 
-    protected goal() {
+    protected Goal() {
     }
 
-    private goal(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {
+    private Goal(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {
 
     }
 
-    public static goal of(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {
-        return new goal(user_id, goal_id, goal_name, goal_detail, goal_seconds, accumulate_seconds, goal_percent, goal_stat, color);
+    public static Goal of(String user_id, String goal_id, String goal_name, String goal_detail, int goal_seconds, int accumulate_seconds, double goal_percent, Character goal_stat, String color) {
+        return new Goal(user_id, goal_id, goal_name, goal_detail, goal_seconds, accumulate_seconds, goal_percent, goal_stat, color);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof goal)) return false;
-        goal goal = (com.climb.timecounting.domain.goal) o;
+        if (!(o instanceof Goal)) return false;
+        Goal goal = (Goal) o;
         return user_id != null && Objects.equals(user_id, goal.user_id);
     }
 

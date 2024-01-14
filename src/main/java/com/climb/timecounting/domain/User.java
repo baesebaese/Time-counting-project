@@ -1,6 +1,5 @@
 package com.climb.timecounting.domain;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,43 +15,43 @@ import java.util.Objects;
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class history {
+@Table(name = "user")
+public class User {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private int seq; // 이력 고유번호
-
     private @Column(length = 100) String user_id; // 유저 고유번호
-    private @Column(nullable = false, length = 11) String goal_id; // 목표 고유번호
 
-    @Setter  @Column(nullable = false) private int execute_seconds; // 수행 시간(초)
+    @Setter @Column(nullable = false, length = 20) private String user_name; // 유저 닉네임
+    @Setter private Boolean user_stat; // 계정 사용 여부 TRUE:정상, FALSE:탈퇴
+
+    private Character login_stat; // 로그인 상태 A:애플로그인, G:구글로그인, NULL:로그아웃
 
     @CreatedDate @Column(nullable = false) private LocalDateTime write_date; // 최초 입력일자
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modify_date; // 수정일자
 
-    protected history() {
+    protected User() {
     }
 
-    private history(String user_id, String goal_id, int execute_seconds) {
-        this.user_id = user_id;
-        this.goal_id = goal_id;
-        this.execute_seconds = execute_seconds;
+    private User(String user_name, Boolean user_stat, Character login_stat) {
+        this.user_name = user_name;
+        this.user_stat = user_stat;
+        this.login_stat = login_stat;
     }
 
-    public static history of(String user_id, String goal_id, int execute_seconds) {
-        return new history(user_id, goal_id, execute_seconds);
+    public static User of(String user_name, Boolean user_stat, Character login_stat) {
+        return new User(user_name, user_stat, login_stat);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof history)) return false;
-        history history = (com.climb.timecounting.domain.history) o;
-        return seq == history.seq;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return user_id != null && Objects.equals(user_id, user.user_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(seq);
+        return Objects.hash(user_id);
     }
 }
