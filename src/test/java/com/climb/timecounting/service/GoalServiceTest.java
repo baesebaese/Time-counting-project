@@ -1,8 +1,7 @@
 package com.climb.timecounting.service;
 
-import com.climb.timecounting.domain.goal;
+import com.climb.timecounting.domain.Goal;
 import com.climb.timecounting.dto.GoalDto;
-import com.climb.timecounting.dto.GoalUpdateDto;
 import com.climb.timecounting.repository.GoalRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -57,12 +56,12 @@ class GoalServiceTest {
     @Test
     public void givenGoalInfo_whenSavingGoal_thenSavesGoal() {
         //Given
-        given(goalRepository.save(any(goal.class))).willReturn(null);
+        given(goalRepository.save(any(Goal.class))).willReturn(null);
 
         //When
         sut.saveGoal(GoalDto.of("A0001",333, "백준 코딩테스트 순위권들기", "매일 알고리즘 세문제 풀기", 10000, 44, LocalDateTime.now(), "morendo90@gmail.com" , LocalDateTime.now(), 'I', "#121212"));
         //Then
-        then(goalRepository).should().save(any(goal.class));
+        then(goalRepository).should().save(any(Goal.class));
     }
 
 /*
@@ -85,13 +84,13 @@ class GoalServiceTest {
     @Test
     public void givenGoalId_whenDeletingGoal_thenDeleteGoal() {
         //Given
-        willDoNothing().given(goalRepository).delete(any(goal.class));
+        willDoNothing().given(goalRepository).delete(any(Goal.class));
 
         //When
 
         sut.deleteGoal(1L);
         //Then
-        then(goalRepository).should().save(any(goal.class));
+        then(goalRepository).should().save(any(Goal.class));
     }
 
 
