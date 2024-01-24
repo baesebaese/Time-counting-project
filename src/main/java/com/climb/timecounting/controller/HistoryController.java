@@ -1,6 +1,7 @@
 package com.climb.timecounting.controller;
 import com.climb.timecounting.domain.History;
 import com.climb.timecounting.service.HistoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,14 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/history")
+@RequiredArgsConstructor
 @RestController
 public class HistoryController {
 
-    private HistoryService historyService;
-    @Autowired
-    public HistoryController(HistoryService historyService) {
-        this.historyService = historyService;
-    }
+    private final HistoryService historyService;
 
     // 임시
     @GetMapping({"/list"})

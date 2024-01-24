@@ -27,4 +27,10 @@ public class GoalService {
         System.out.println("리스트 출력 " + result.toString());
         return result;
     }
+
+    public goal goal(String id){
+        var result =goalRepository.findById(id).orElse(null);
+
+        return result;
+    }
 }

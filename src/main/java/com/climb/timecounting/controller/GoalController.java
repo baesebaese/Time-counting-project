@@ -1,5 +1,6 @@
 package com.climb.timecounting.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,38 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
+@RestController
 @RequestMapping("/goals")
-@Controller
 public class GoalController {
-    @GetMapping
-    public String goals(ModelMap map) {
-        map.addAttribute("goals", List.of());
-        return "goals/index";
+    private final GoalService goalService;
+
+    @GetMapping("/list")
+    public List<goal> goals() {
+        var result = goalService.getGoalList();
+
+        return result;
     }
 
     @GetMapping("/{goalId}")
-    public String goal(@PathVariable Long goalId, ModelMap map) {
-        map.addAttribute("goal", "goal");
+    public goal goal(@PathVariable String goalId) {
+        var result = goalService.goal(goalId);
 
-        return "goals/detail";
-
+        return result;
     }
-
-// @RequestMapping("/goal")
-// @RestController
-// public class GoalController {
-
-   // private GoalService goalService;
-   // @Autowired
-   // public GoalController(GoalService goalService) {
-   //     this.goalService = goalService;
-   // }
-
-    // 임시
-    // @GetMapping({"/list"})
-    // public ResponseEntity<List<goal>> getGoalList() {
-     //   System.out.println("리스트조회");
-     //   var goalList = goalService.getGoalList();
-     //   return ResponseEntity.ok(goalList);
-    //}
 }
