@@ -35,6 +35,10 @@ public class UserController {
 
         return ResponseEntity.ok(null);
     }
+
+    public void delete(){
+
+    }
 }
 
 

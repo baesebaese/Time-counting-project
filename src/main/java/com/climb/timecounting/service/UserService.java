@@ -31,4 +31,10 @@ public class UserService {
 
         return true;
     }
+
+    //유저 탈퇴 처리
+    //사용중단 업데이트 처리
+    public void delete(){
+        userRepository.save(null);
+    }
 }
