@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -34,8 +35,21 @@ public class GoalService {
         return result;
     }
 
-    public void save() {
-        Goal entity = new Goal();
-        goalRepository.save(entity);
+    public Goal saveOrUpdate(Goal goal) {
+        final Optional<Goal> foundGoal = goalRepository.findById(goal.getGoal_id());
+
+        if (foundGoal.isPresent()) {
+            foundGoal.get().update(
+                goal.getGoal_name(), goal.getGoal_detail()
+            );
+            return foundGoal.get();
+        }
+
+        return goalRepository.save(goal);
     }
+
+    public void delete(Goal goal){
+        goalRepository.delete(goal);
+    }
+
 }

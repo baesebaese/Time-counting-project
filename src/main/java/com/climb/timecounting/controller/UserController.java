@@ -36,8 +36,9 @@ public class UserController {
         return ResponseEntity.ok(null);
     }
 
-    public void delete(){
-
+    @PostMapping("/delete")
+    public void delete(@RequestBody String userId){
+        userService.delete(userId);
     }
 }
 

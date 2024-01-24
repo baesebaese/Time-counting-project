@@ -70,4 +70,10 @@ public class Goal {
     public int hashCode() {
         return Objects.hash(user_id);
     }
+
+    public void update(final String goalName, final String goalDetail) {
+        this.goal_name = goalName;
+        this.goal_detail = goalDetail;
+
+    }
 }

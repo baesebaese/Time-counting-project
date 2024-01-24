@@ -53,4 +53,8 @@ public class User {
     public int hashCode() {
         return Objects.hash(user_id);
     }
+
+    public void updateStat(){
+        this.user_stat = !this.user_stat;
+    }
 }

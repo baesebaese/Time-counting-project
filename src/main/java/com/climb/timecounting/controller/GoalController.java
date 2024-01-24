@@ -4,14 +4,11 @@ import com.climb.timecounting.domain.Goal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import com.climb.timecounting.service.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -28,20 +25,14 @@ public class GoalController {
         return result;
     }
 
-    //목표 추가
-    public void save(){
-        goalService.save();
-
+    @PostMapping("/save")
+    public void saveOrUpdate(@RequestBody Goal goal){
+        goalService.saveOrUpdate(goal);
     }
 
-    //목표 삭제
-    public void delete(){
-
-    }
-
-    //목표 수정
-    public void update(){
-
+    @PostMapping("/delete")
+    public void delete(@RequestBody Goal goal){
+        goalService.delete(goal);
     }
 
     @GetMapping("/{goalId}")

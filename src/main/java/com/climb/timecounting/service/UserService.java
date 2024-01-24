@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +35,11 @@ public class UserService {
 
     //유저 탈퇴 처리
     //사용중단 업데이트 처리
-    public void delete(){
-        userRepository.save(null);
+    public void delete(String userId){
+        Optional<User> foundUser = userRepository.findById(userId);
+
+        if(foundUser.isPresent()){
+            foundUser.get().updateStat();
+        }
     }
 }
