@@ -55,4 +55,10 @@ public class GoalService {
 
     public void deleteGoal(long goalId) {
     }
+
+    public goal goal(String id){
+        var result =goalRepository.findById(id).orElse(null);
+
+        return result;
+    }
 }

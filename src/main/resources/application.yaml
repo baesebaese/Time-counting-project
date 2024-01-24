@@ -18,12 +18,12 @@ spring:
   #  driver-class-name: org.h2.Driver
   jpa:
     defer-datasource-initialization: true
-    hibernate.ddl-auto: create
+#    hibernate.ddl-auto: create
     show-sql: true
     properties:
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100
-  sql.init.mode: always
+#  sql.init.mode: always
   # thymeleaf.cache: false
 
   data.rest:
