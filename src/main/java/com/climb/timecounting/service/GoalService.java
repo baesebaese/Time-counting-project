@@ -40,7 +40,7 @@ public class GoalService {
 
         if (foundGoal.isPresent()) {
             foundGoal.get().update(
-                goal.getGoal_name(), goal.getGoal_detail()
+                goal.getGoal_name(), goal.getGoal_detail(), goal.getGoal_seconds(), goal.getGoal_percent()
             );
             return foundGoal.get();
         }

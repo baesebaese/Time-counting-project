@@ -71,9 +71,11 @@ public class Goal {
         return Objects.hash(user_id);
     }
 
-    public void update(final String goalName, final String goalDetail) {
+    public void update(final String goalName, final String goalDetail, final int goalSeconds, final double goalPercent) {
         this.goal_name = goalName;
         this.goal_detail = goalDetail;
+        this.goal_seconds = goalSeconds;
+        this.goal_percent = goalPercent;
 
     }
 }
